@@ -1,6 +1,6 @@
-package com.jester.dao;
+package com.jester.mymybatis.dao;
 
-import com.jester.ssm.vo.CarMusicLogVO;
+import com.jester.mymybatis.vo.CarMusicLogVO;
 import org.springframework.stereotype.Repository;
 
 /**

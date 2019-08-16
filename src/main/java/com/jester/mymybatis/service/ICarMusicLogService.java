@@ -1,4 +1,4 @@
-package com.jester.service;
+package com.jester.mymybatis.service;
 
 /**
  * @author yuxinzh

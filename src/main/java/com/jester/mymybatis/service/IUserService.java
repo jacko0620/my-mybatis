@@ -1,7 +1,7 @@
-package com.jester.service;
+package com.jester.mymybatis.service;
 
 
-import com.jester.vo.UserVO;
+import com.jester.mymybatis.vo.UserVO;
 
 /**
  * @author yuxinzh

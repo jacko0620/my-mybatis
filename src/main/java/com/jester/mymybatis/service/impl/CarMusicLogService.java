@@ -1,13 +1,11 @@
-package com.jester.service.impl;
+package com.jester.mymybatis.service.impl;
 
-import com.jester.ssm.dao.ICarMusicLogDao;
-import com.jester.ssm.service.ICarMusicLogService;
-import com.jester.ssm.vo.CarMusicLogVO;
+import com.jester.mymybatis.dao.ICarMusicLogDao;
+import com.jester.mymybatis.service.ICarMusicLogService;
+import com.jester.mymybatis.vo.CarMusicLogVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -19,8 +17,6 @@ import java.util.UUID;
  * @author yuxinzh
  * @create 2019/8/12
  */
-@Service
-@Transactional
 public class CarMusicLogService implements ICarMusicLogService {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());

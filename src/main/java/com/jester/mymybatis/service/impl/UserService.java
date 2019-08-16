@@ -1,8 +1,8 @@
-package com.jester.service.impl;
+package com.jester.mymybatis.service.impl;
 
-import com.jester.dao.IUserDao;
-import com.jester.service.IUserService;
-import com.jester.vo.UserVO;
+import com.jester.mymybatis.dao.IUserDao;
+import com.jester.mymybatis.service.IUserService;
+import com.jester.mymybatis.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

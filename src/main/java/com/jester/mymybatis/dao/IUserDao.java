@@ -1,6 +1,6 @@
-package com.jester.dao;
+package com.jester.mymybatis.dao;
 
-import com.jester.vo.UserVO;
+import com.jester.mymybatis.vo.UserVO;
 import org.springframework.stereotype.Repository;
 
 

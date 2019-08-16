@@ -1,4 +1,4 @@
-package com.jester.vo;
+package com.jester.mymybatis.vo;
 
 import lombok.Data;
 
