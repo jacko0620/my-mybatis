@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="com.jester.ssm.dao.ICarMusicLogDao">
+    <resultMap id="resultVO" type="com.jester.ssm.vo.CarMusicLogVO">
+        <result column="id" property="id"/>
+        <result column="file_name" property="fileName"/>
+        <result column="create_ts" property="createTs"/>
+    </resultMap>
+
+    <sql id="_column">
+        id,file_name,create_ts
+    </sql>
+
+    <select id="getByName" resultMap="resultVO"  parameterType="java.lang.String">
+        select
+        <include refid="_column"/>
+        from t_car_music_log
+        where file_name = #{fileName};
+    </select>
+
+    <insert id="insert"
+            parameterType="com.jester.ssm.vo.CarMusicLogVO"
+            flushCache="true"
+            statementType="PREPARED"
+            timeout="20">
+        insert into t_car_music_log(id,file_name,create_ts) values (#{id},#{fileName},#{createTs})
+    </insert>
+
+</mapper>

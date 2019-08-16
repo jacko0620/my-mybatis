@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="com.jester.ssm.dao.IUserDao">
+    <resultMap id="resultVO" type="com.jester.vo.UserVO">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <sql id="_column">
+        id,username,password
+    </sql>
+
+    <select id="getUserById" resultMap="resultVO"  parameterType="java.lang.String">
+        select
+        <include refid="_column"/>
+        from t_user
+        where id = #{id};
+    </select>
+
+</mapper>
