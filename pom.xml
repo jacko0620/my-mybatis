@@ -21,6 +21,7 @@
         <fastjson.version>1.2.54</fastjson.version>
         <slf4j.version>1.7.25</slf4j.version>
         <c3p0.version>0.9.5.3</c3p0.version>
+        <lang3.version>3.8.1</lang3.version>
     </properties>
 
     <dependencies>
@@ -96,6 +97,14 @@
             <version>${c3p0.version}</version>
         </dependency>
         <!-- c3p0 end -->
+
+        <!-- lang3 begin -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${lang3.version}</version>
+        </dependency>
+        <!-- lang3 end -->
     </dependencies>
 
     <build>

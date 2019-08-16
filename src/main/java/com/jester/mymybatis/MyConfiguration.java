@@ -1,0 +1,100 @@
+package com.jester.mymybatis;
+
+import org.apache.commons.lang3.StringUtils;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+
+import java.io.BufferedInputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/**
+ * @author yuxinzh
+ * @create 2019/8/16
+ */
+public class MyConfiguration extends BaseFile {
+
+    private ClassLoader loader = ClassLoader.getSystemClassLoader();
+
+    /**
+     * 读xml
+     * @return
+     */
+    public Connection build(){
+        try {
+            BufferedInputStream is = new BufferedInputStream(loader.getResourceAsStream("config.xml"));
+            SAXReader reader = new SAXReader();
+            Document document = reader.read(is);
+            Element element = document.getRootElement();
+            return this.handleDataSource(element);
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 处理获取到的xml文件内容，链接数据库
+     * @param element
+     * @return
+     */
+    private Connection handleDataSource(Element element) {
+        if (!"database".equals(element.getName())) {
+            logger.error("file error:{}",element.getName());
+            throw new RuntimeException("file error");
+        }
+
+        Element property;
+        String name;
+        String value;
+        String driverClassName = "";
+        String url = "";
+        String username = "";
+        String password = "";
+
+
+        for (Object item : element.elements("property")) {
+            property = (Element) item;
+            name = property.attributeValue("name");
+            if (StringUtils.isBlank(name)) {
+                throw new RuntimeException("属性名称为空");
+            }
+            value = property.hasContent()?property.getText():property.attributeValue("value");;
+            if (StringUtils.isBlank(value)) {
+                throw new RuntimeException("属性值为空");
+            }
+
+            switch (name) {
+                case "driverClassName":
+                    driverClassName = value;
+                    break;
+                case "url":
+                    url = value;
+                    break;
+                case "username":
+                    username = value;
+                    break;
+                case "password":
+                    password = value;
+                    break;
+                default:
+                    logger.error("属性名称错误：{}",name);
+                    throw new RuntimeException("属性名称错误");
+            }
+        }
+
+        try {
+            Class.forName(driverClassName);
+            Connection connection = DriverManager.getConnection(url,username,password);
+            return connection;
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+}
