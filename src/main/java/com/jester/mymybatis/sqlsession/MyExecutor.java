@@ -1,5 +1,7 @@
 package com.jester.mymybatis.sqlsession;
 
+import com.jester.mymybatis.mapping.MyMappedStatement;
+
 /**
  *
  * @author yuxinzh
@@ -14,26 +16,28 @@ public interface MyExecutor {
      * @param <T>
      * @return
      */
-    <T> T select(String statement,Object parameter);
+    <T> T query(MyMappedStatement statement,Object parameter);
 
     /**
      * 插入
      * @param statement
      * @param parameter
      */
-    void insert(String statement,Object parameter);
+    void insert(MyMappedStatement statement,Object parameter);
 
     /**
      * 更新
      * @param statement
      * @param parameter
      */
-    void update(String statement,Object parameter);
+    void update(MyMappedStatement statement,Object parameter);
 
     /**
      * 删除
      * @param statement
      * @param parameter
      */
-    void delete(String statement,Object parameter);
+    void delete(MyMappedStatement statement,Object parameter);
+
+    // todo createCacheKey
 }
