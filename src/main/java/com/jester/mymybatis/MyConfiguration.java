@@ -1,5 +1,6 @@
 package com.jester.mymybatis;
 
+import com.jester.mymybatis.config.MapperBean;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -7,6 +8,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -92,6 +94,28 @@ public class MyConfiguration extends BaseFile {
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /**
+     * todo 读sqlmapper
+     * @param path
+     * @return
+     */
+    public MapperBean readMapper(String path) {
+        try {
+            MapperBean mapperBean = new MapperBean();
+
+            InputStream stream = loader.getResourceAsStream(path);
+            SAXReader reader = new SAXReader();
+            Document document = reader.read(stream);
+            Element root = document.getRootElement();
+
+            return mapperBean;
+        } catch (DocumentException e) {
+            logger.error("readMapper fail ",e);
             throw new RuntimeException(e);
         }
 
