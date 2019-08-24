@@ -105,6 +105,14 @@
             <version>${lang3.version}</version>
         </dependency>
         <!-- lang3 end -->
+
+        <!-- guava begin -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>20.0</version>
+        </dependency>
+        <!-- guava end -->
     </dependencies>
 
     <build>

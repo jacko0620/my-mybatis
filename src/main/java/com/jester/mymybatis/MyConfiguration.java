@@ -1,5 +1,7 @@
 package com.jester.mymybatis;
 
+import com.google.common.collect.Lists;
+import com.jester.mymybatis.config.Function;
 import com.jester.mymybatis.config.MapperBean;
 import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Document;
@@ -12,6 +14,8 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author yuxinzh
@@ -112,6 +116,21 @@ public class MyConfiguration extends BaseFile {
             SAXReader reader = new SAXReader();
             Document document = reader.read(stream);
             Element root = document.getRootElement();
+
+            // <mapper namespace="com.jester.ssm.dao.IUserDao">
+            mapperBean.setInterfaceName(root.attributeValue("namespace").trim());
+            List<Function> list = Lists.newArrayList();
+            Iterator<Element> it = root.elementIterator();
+            Function function;
+            Element element;
+            String sqlType,functionName,sql,resultType;
+            while (it.hasNext()) {
+                function = new Function();
+                element = it.next();
+                sqlType = element.getName().trim();
+                functionName = element.attributeValue("id").trim();
+                sql = element.getTextTrim();
+            }
 
             return mapperBean;
         } catch (DocumentException e) {
